@@ -4,60 +4,59 @@ Created on Sun Nov 14 18:27:09 2021
 
 @author: frimt
 """
-import copy
 
+import copy
 from constants import PLAYERS
 
-alt_players = copy.deepcopy(PLAYERS)
-alt_teams = []
-
-Panthers = []
-Bandits = []
-Warriors = []
-
-alt_teams.append(Panthers)
-alt_teams.append(Bandits)
-alt_teams.append(Warriors)
-
-for player in alt_players:
-    player['height'], units = player['height'].split()
-    player['height'] = int(player['height'])
-
-    player['guardians'] = player['guardians'].split("and")
-    player['guardians'] = " ,".join(player['guardians'])
-
-    if player['experience'] == 'YES':
-        player['experience'] = True
-    else:
-        player['experience'] = False
-
-experience = []
-inexperience = []
-
-
-for player in alt_players:
-    if player['experience']:
-        experience.append(player)
-    else:
-        inexperience.append(player)
-
-alt_players = []
-alt_players = experience + inexperience
-
-for player in alt_players:
-    if alt_players.index(player) % len(alt_teams) == 0:
-        alt_teams[0].append(player)
-    elif alt_players.index(player) % len(alt_teams) == 1:
-        alt_teams[1].append(player)
-    else:
-        alt_teams[2].append(player)
-
-
-print("BASKETBALL TEAM STATS TOOL")
-
-
 def basketball_tool():
+    alt_players = copy.deepcopy(PLAYERS)
+    alt_teams = []
+
+    Panthers = []
+    Bandits = []
+    Warriors = []
+
+    alt_teams.append(Panthers)
+    alt_teams.append(Bandits)
+    alt_teams.append(Warriors)
     while True:
+        
+
+        for player in alt_players:
+            player['height'], units = player['height'].split()
+            player['height'] = int(player['height'])
+
+            player['guardians'] = player['guardians'].split("and")
+            player['guardians'] = " ,".join(player['guardians'])
+
+            if player['experience'] == 'YES':
+                player['experience'] = True
+            else:
+                player['experience'] = False
+
+        experience = []
+        inexperience = []
+
+
+        for player in alt_players:
+            if player['experience']:
+                experience.append(player)
+            else:
+                inexperience.append(player)
+
+        alt_players = []
+        alt_players = experience + inexperience
+
+        for player in alt_players:
+            if alt_players.index(player) % len(alt_teams) == 0:
+                alt_teams[0].append(player)
+            elif alt_players.index(player) % len(alt_teams) == 1:
+                alt_teams[1].append(player)
+            else:
+                alt_teams[2].append(player)
+
+
+        print("BASKETBALL TEAM STATS TOOL")
 
         options = input(
             "Here are your choices:\n A) Display Team Stats \n B) Quit \n.......")
@@ -197,3 +196,4 @@ if __name__ == "__main__":
         replay_stats = input("Would you like to see stats again: Yes / No    ")
     else:
         print("Have a great Day!!!")
+
